@@ -1,0 +1,6 @@
+This installer (MIT license) may download and install Canon's G3000 CUPS
+Printer Driver from Canon. Canon's software remains under Canon's license.
+
+https://asia.canon/en/support/0101155813?model=PIXMA%20G3000
+
+Agreeing continues installation of both components.

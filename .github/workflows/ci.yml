@@ -1,0 +1,21 @@
+name: CI
+
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+
+jobs:
+  check:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Check scripts
+        run: make check
+      - name: Build package
+        run: make pkg
+      - name: Upload package
+        uses: actions/upload-artifact@v4
+        with:
+          name: Canon-G3010-macOS-pkg
+          path: dist/*.pkg

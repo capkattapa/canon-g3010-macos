@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<installer-gui-script minSpecVersion="2">
+  <title>Canon G3010 macOS Compatibility</title>
+  <organization>org.community</organization>
+  <domains enable_localSystem="true"/>
+  <options customize="never" require-scripts="true" rootVolumeOnly="true"/>
+  <welcome file="welcome.txt"/>
+  <license file="license.txt"/>
+  <pkg-ref id="org.community.canon-g3010-macos"/>
+  <choices-outline>
+    <line choice="default"/>
+  </choices-outline>
+  <choice id="default" title="Install">
+    <pkg-ref id="org.community.canon-g3010-macos"/>
+  </choice>
+  <pkg-ref id="org.community.canon-g3010-macos" version="1.1.0" onConclusion="none">Canon-G3010-macOS-component.pkg</pkg-ref>
+</installer-gui-script>

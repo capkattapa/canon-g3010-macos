@@ -1,0 +1,2 @@
+#!/bin/zsh
+exec /usr/local/libexec/canon-g3010-macos/scripts/install.sh "$@"

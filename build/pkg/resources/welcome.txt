@@ -1,0 +1,6 @@
+Canon PIXMA G3010 macOS Compatibility 1.1.0
+
+Installs printer support for the Canon PIXMA G3010 on this Mac.
+
+The printer should be on the same network. The first install needs internet
+to download Canon's G3000 CUPS driver from Canon (about 15 MB).
