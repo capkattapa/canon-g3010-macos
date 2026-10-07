@@ -44,6 +44,12 @@ shasum -a 256 -c SHA256SUMS-1.1.0.txt
 
 From a full package install (`make pkg`), the same tools are also available as `g3010-doctor`, `g3010-test-print`, and `g3010-uninstall`.
 
+## How it works
+
+```text
+App → CUPS → Canon G3000 renderer (BJRaster3) → LPD/Bonjour → G3010
+```
+
 ## Offline install
 
 1. Download the G3000 CUPS driver DMG from [Canon](https://asia.canon/en/support/0101155813?model=PIXMA%20G3000).
