@@ -2,14 +2,16 @@
 
 ## Driver missing
 
+Double-click `Install.command` again, or:
+
 ```sh
-g3010-install --force --accept-canon-license
+./scripts/install.sh --force --accept-canon-license
 ```
 
 Needs internet, or pass a local Canon DMG:
 
 ```sh
-g3010-install --accept-canon-license --canon-dmg /path/to/file.dmg
+./scripts/install.sh --accept-canon-license --canon-dmg /path/to/file.dmg
 ```
 
 ## Printer not found
@@ -19,22 +21,22 @@ g3010-install --accept-canon-license --canon-dmg /path/to/file.dmg
 - Try a direct address:
 
 ```sh
-g3010-install --force --accept-canon-license --host PRINTER_IP
+./scripts/install.sh --force --accept-canon-license --host PRINTER_IP
 ```
 
 ## Nothing prints
 
 ```sh
 lpstat -p Canon_G3010 -l
-g3010-doctor
-g3010-test-print --system
+./scripts/g3010-doctor.sh
+./scripts/test-print.sh --system
 ```
 
 If you added an IPP Everywhere / AirPrint queue yourself and jobs stall, remove that queue and use this installer instead.
 
 ## Permission errors
 
-Use `Install.command` or:
+Use `Install.command`, or:
 
 ```sh
 sudo ./scripts/install.sh --accept-canon-license --force

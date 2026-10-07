@@ -2,78 +2,47 @@
 
 Unofficial macOS installer for network printing to a Canon PIXMA G3010.
 
-This project is not affiliated with Canon. The installer downloads Canon’s official G3000 CUPS driver from Canon when needed. Canon files are not included in this repository.
+Not affiliated with Canon. The installer downloads Canon’s official G3000 CUPS driver from Canon when needed. Canon’s DMG is not included in this project or in release downloads.
 
-## Install
+## Install (recommended)
 
-### Package (recommended)
-
-1. Download `Canon-G3010-macOS-*.pkg` from [Releases](../../releases).
-2. Open the package and follow the prompts.
-3. Enter your Mac password when asked.
+1. Download **`Canon-G3010-macOS-1.1.0.zip`** from [Releases](../../releases).
+2. Unzip the file.
+3. Double-click **`Install.command`**.
+4. Press Return, then enter your Mac password when asked.
 
 The printer should appear under **System Settings → Printers & Scanners**.
+
+First install needs internet (about 15 MB) so Canon’s G3000 driver can be fetched from Canon and checked with SHA-256 before installation.
 
 If the printer was offline during install:
 
 ```sh
-g3010-install --force --accept-canon-license
+./scripts/install.sh --accept-canon-license --force --host 192.168.0.50
 ```
 
-Or with a known address:
+### Verify the release download
 
 ```sh
-g3010-install --force --accept-canon-license --host 192.168.0.50
-```
-
-### From source
-
-In Finder, double-click `Install.command`.
-
-Or in Terminal:
-
-```sh
-./Install.command
+shasum -a 256 -c SHA256SUMS-1.1.0.txt
 ```
 
 ## Requirements
 
 - macOS 11 or later
 - Canon PIXMA G3010 on the same Wi‑Fi or LAN
-- Internet on first install (Canon driver download, about 15 MB)
+- Internet on first install
 - Administrator password
 
-## Commands
+## After install
 
 | Command | Description |
 |---------|-------------|
-| `g3010-install` | Install or repair the printer setup |
-| `g3010-doctor` | Check the installation |
-| `g3010-test-print` | Print a test page |
-| `g3010-uninstall` | Remove the printer queue |
-| `g3010-ensure-canon` | Install only the Canon G3000 driver |
+| `./scripts/g3010-doctor.sh` | Check the setup |
+| `./scripts/test-print.sh` | Print a test page |
+| `./scripts/uninstall.sh` | Remove the printer queue |
 
-## Build the package
-
-```sh
-make pkg
-```
-
-Output: `dist/Canon-G3010-macOS-<version>.pkg`
-
-To sign:
-
-```sh
-./packaging/build-pkg.sh --sign "Developer ID Installer: Your Name (TEAMID)"
-```
-
-Do not attach Canon `.dmg` files to GitHub releases. The installer downloads them from Canon.
-
-## How it works
-
-```text
-App → CUPS → Canon G3000 renderer (BJRaster3) → LPD/Bonjour → G3010
-```
+From a full package install (`make pkg`), the same tools are also available as `g3010-doctor`, `g3010-test-print`, and `g3010-uninstall`.
 
 ## Offline install
 
@@ -81,24 +50,34 @@ App → CUPS → Canon G3000 renderer (BJRaster3) → LPD/Bonjour → G3010
 2. Run:
 
 ```sh
-g3010-install --accept-canon-license --canon-dmg /path/to/mcpd-mac-g3000-16_91_0_0-ea21_3.dmg
+./scripts/install.sh --accept-canon-license --canon-dmg /path/to/mcpd-mac-g3000-16_91_0_0-ea21_3.dmg
 ```
-
-## Uninstall
-
-```sh
-g3010-uninstall
-```
-
-This removes the G3010 queue created by this project. Canon’s G3000 driver is left installed.
 
 ## Troubleshooting
 
 See [docs/troubleshooting.md](docs/troubleshooting.md).
 
 ```sh
-g3010-doctor
+./scripts/g3010-doctor.sh
 ```
+
+## How it works
+
+```text
+App → CUPS → Canon G3000 renderer (BJRaster3) → LPD/Bonjour → G3010
+```
+
+## For developers
+
+Clone this repository for source, packaging, and CI. Ordinary users only need the release ZIP.
+
+```sh
+make check
+make release          # user ZIP + checksums + release notes
+make release-pkg      # above, plus optional .pkg
+```
+
+Do not attach Canon `.dmg` files to GitHub releases.
 
 ## License
 
