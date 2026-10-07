@@ -53,22 +53,6 @@ Or in Terminal:
 | `g3010-uninstall` | Remove the printer queue |
 | `g3010-ensure-canon` | Install only the Canon G3000 driver |
 
-## Build the package
-
-```sh
-make pkg
-```
-
-Output: `dist/Canon-G3010-macOS-<version>.pkg`
-
-To sign:
-
-```sh
-./packaging/build-pkg.sh --sign "Developer ID Installer: Your Name (TEAMID)"
-```
-
-Do not attach Canon `.dmg` files to GitHub releases. The installer downloads them from Canon.
-
 ## How it works
 
 ```text
